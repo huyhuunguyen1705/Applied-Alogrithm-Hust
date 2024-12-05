@@ -58,10 +58,12 @@ bool isBalanced(string &s, stack<char> st, int idx){
 
     // Case 3: If the current character is 'X' then check for both cases when 'X' can be opening or closing bracket.
     else if(s[idx] == 'X'){
+        // if X is opening bracket then push into the clone stack
         stack<char> tmp = st;
         tmp.push(s[idx]);
         res = isBalanced(s, tmp, idx+1);
         if(res) return true;
+        // if X is closing bracket, then pop because X can be any kind of closing bracket
         if(st.empty()) return false;
         st.pop();
         return isBalanced(s, st, idx+1);
