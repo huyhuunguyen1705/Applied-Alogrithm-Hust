@@ -17,4 +17,68 @@ Input
 Output
 4
 */
+// dp[i][0] số cách lập lịch đến ngày thứ i và ngày i không làm việc
+// dp[i][1] số cách lập lịch đến ngày thứ i và ngày i làm việc
+#include <bits/stdc++.h>
 
+using namespace std;
+
+const int MAX = 1e3 + 5, MOD = 1e9 + 7;
+int n, k1, k2;
+int dp[MAX][2], res;
+
+void input(){
+    cin >> n >> k1 >> k2;
+}
+
+void solve(){
+    dp[0][0] = dp[0][1] = 1;
+    for(int i=1; i<=n; i++){
+        for(int j=k1; j<=k2; j++){
+            if(i-j <0) break;
+            dp[i][1] += dp[i-j][0];
+            dp[i][1] %= MOD;
+        }
+        dp[i][0] = dp[i-1][1];
+    }
+    res = (dp[n][0] + dp[n][1]) % MOD;
+    cout<<res<<'\n';
+}
+
+int main(){
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    
+    input();
+    solve();
+
+    return 0;
+}
+
+/*
+#include<bits/stdc++.h>
+using namespace std;
+
+const int LIM = 1e3+7;
+int N, K1, K2;
+int f[LIM]{0};
+int main() {
+    cin >> N >> K1 >> K2;
+    //f[i]: kết thúc tại i và ngày i làm việc
+    for(int i=1; i<=N; i++){
+        if(i < K1 ) f[i] = 0;
+        else if(i == K1) f[i] = 1;
+        else if(i<=K2) f[i] = 2;
+        else if(i>K2) {
+            for(int u=1; u<=i; u++)
+            if(i-u+1>=K1 && i-u+1<=K2) {
+                if(u>=3) f[i]+=f[u-2];
+                else if(u == 2) f[i]+=1;
+                //cout << u;
+            }
+        }
+        //cout << f[i] <<"\n";
+    }
+    cout<< f[N]+f[N-1];
+}
+*/
