@@ -50,7 +50,7 @@ int main(){
     for(int i=0; i<n; i++) f[0][i] = a[i];
 
     for(int j=1; (1<<j)<=n; j++){
-        for(int i=0; i+(1<<j)<=n; i++){
+        for(int i=0; i+(1<<j)-1<n; i++){// Với dãy độ dài 2^i, chỉ kiểm tra chỉ số đầu tiên i mà i + 2^i - 1 <=n-1, tức là dãy này vẫn trong phạm vi của dãy a
             f[j][i] = min(f[j-1][i], f[j-1][i+(1<<(j-1))]);
         }
     }
