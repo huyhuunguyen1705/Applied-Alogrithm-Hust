@@ -9,8 +9,7 @@ The length of the subsequence found.
 
 Example
 Input 
-6
-5 8 2 8 10 10 
+ 
 
 Output
 3
