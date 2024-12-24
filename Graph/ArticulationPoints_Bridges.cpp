@@ -35,6 +35,7 @@ Nói cách khác, e là một cạnh mà nếu bị loại bỏ, đồ thị s�
 
 #include <bits/stdc++.h>
 using namespace std;
+// Chú ý code này chỉ đúng với graph vô hướng
 
 const int MAX = 1e5 + 5;
 int n,m;
@@ -62,7 +63,7 @@ void dfs(int u, int pre){
                     articulation_points[u] = 1;
                 }
             }else{
-                low[u] = min(low[u],num[v]);
+                low[u] = min(low[u],num[v]); // Cập nhật lại low[u] nếu có thể đi từ v lên u
             }
         }
     }

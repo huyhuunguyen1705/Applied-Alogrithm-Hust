@@ -39,6 +39,7 @@ void init() {
 void dfs(int u){
     for(auto x: adj[u]){
         if(d[x.first]<0){ // Vì đây là cây nên mỗi đỉnh trừ nút gốc chỉ có thể được thăm bởi 1 đỉnh duy nhất
+        // Tức là giữa hai điểm chỉ có 1 đường đi duy nhất
             d[x.first] = d[u] + x.second;
             dfs(x.first);
         }
