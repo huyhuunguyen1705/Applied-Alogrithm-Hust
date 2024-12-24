@@ -63,7 +63,7 @@ int main(){
     ios::sync_with_stdio(0);
     cin.tie(0);
     cin>>n;
-    for(int i=0; i<n; i++) cin >>a[i];
-    long long res = mergeSortAndCount(a, 0, n-1);
+    for(int i=1; i<=n; i++) cin >>a[i];
+    long long res = mergeSortAndCount(a, 1, n);
     cout<<res<<'\n';
 }
