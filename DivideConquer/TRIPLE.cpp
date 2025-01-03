@@ -1,4 +1,4 @@
-/* https://codeforces.com/group/Ir5CI6f3FD/contest/273369/problem/I
+/* 
 Cho dãy các số nguyên dương a = (a1,...,aN) và số nguyên dương K. Tính Q là số triple (i,j,k) mà 1<=i<j<k<=N và a[i] + a[j] + a[k] = K.
 Input
 The input consists of following lines:
@@ -13,16 +13,43 @@ Input:
 Output:
 3
 */
+// binary search O(N^2)
 #include <bits/stdc++.h>
 using namespace std;
+#define int long long
 
-int main(){
-    int n,k; cin >> n >> k;
-    vector<int> a(n+1);
-    for(int i=1; i<=n; i++) cin >> a[i];
+const int N = 5005;
+const int MOD = 1e9 + 7;
+int n, Q, a[N];
+
+signed main(){
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
+    cin >> n >> Q;
+    for(int i=1; i<=n; i++) cin>>a[i];
+    sort(a+1, a+n+1, [](const int a, const int b){
+        return a<b;
+    });
 
     int cnt=0;
-
+    for(int i=1; i<=n; i++){
+        int j = i+1;
+        int k = n;
+        while(j<k){
+            if (a[i]+a[j]+a[k]<Q){
+                j++;
+            } else if (a[i] + a[j] +a[k]>Q){
+                k--;
+            } else {
+                cnt++;
+                cnt = cnt%MOD;
+                j++;
+                k--;
+            }
+        }
+    }
+    cout<<cnt<<'\n';
+    return 0;
 }
 
 
